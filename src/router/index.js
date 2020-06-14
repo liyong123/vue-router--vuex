@@ -80,6 +80,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "getter" */ '@/views/vuexView/Getter')
   },
   {
+    path: '/apiTest',
+    name: 'apiTest',
+    component: () => import(/* webpackChunkName: "apiTest" */ '@/views/ApiTest')
+  },
+  {
     path: '/*',
     name: 'NotMatch',
     component: () => import(/* webpackChunkName: "notMatch" */ '@/views/NotMatch')
