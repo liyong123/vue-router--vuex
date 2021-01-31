@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-/* 创建整个项目的数据仓库对象，将多组件公用的数据放置到此对象中 */
+/* 创建整个项目的数据仓库对象，将"多组件"公用的数据放置到此对象中 */
 export default new Vuex.Store({
   // 类似于data
   state: {
@@ -30,7 +30,8 @@ export default new Vuex.Store({
     },
 
   },
-  // 类似于methods
+  // 类似于methods,没有异步，必须是同步函数。
+  /* addNum, setNumber也可以写成常量 */
   mutations: {
     addNum: state => {
       return {
@@ -39,6 +40,7 @@ export default new Vuex.Store({
       }
       /* state.number++ */
     },
+    /* 传入额外的参数，叫“载荷” ,传多个值时，v参数可以是对象*/
     setNumber(state, v) {
       state.number = v
     }

@@ -2,6 +2,7 @@
     <!-- mapState辅助函数介绍 -->
     <div>
         <h3>第三种映射方式：</h3>
+        <p>自身的年龄：{{oldSelf}}</p>
         <p>年龄：{{age}}</p>
         <p>年龄: {{oldAge}}</p>
         <p>数量：{{number}}</p>
@@ -26,10 +27,10 @@ export default {
           this.$store.commit('setNumber', e.target.value)
       }
     },
-    /* 第三种映射方式*/
+    /* 第三种映射方式：对象展开运算符，避免全部覆盖computed*/
     computed: {
-        fillList: function(a){
-           return a
+        oldSelf: function(){
+           return  this.old.split('').reverse().join('')
         },
         ...mapState({
             age: state => state.age, // 箭头函数，省略return

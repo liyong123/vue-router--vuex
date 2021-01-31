@@ -1,7 +1,7 @@
 <template>
     <!-- mapState辅助函数介绍 -->
     <div>
-        <!-- 第一种映射方式，不能set，所以用事件触发，代替v-model双向绑定 -->
+        <!-- 第一种映射方式：不能set，所以用事件触发，代替v-model双向绑定 -->
         <h3>第一种映射方式：</h3>
         <p>数量：{{number}}</p>
         <input type="text" :value="number" @input='changeEvent1'>
@@ -25,7 +25,7 @@ export default {
           this.$store.commit('setNumber', e.target.value)
       }
     },
-    /* 第一种映射方式,数组获取state */
+    /* 第一种映射方式,映射数据到computed，数组获取state */
     computed: mapState(['number'])
 }
 </script>

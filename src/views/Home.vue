@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <button @click="goEvent(1)">路由跳转path</button>
-    <button @click="goEvent(2)">路由跳转name</button>
-    <button @click="goEvent(3)">路由跳转params</button>
-    <button @click="goEvent(4)">路由跳转query</button>
-    <button @click="goEvent(5)">路由替换</button>
-    <button @click="goEvent(6)">路由前进后退</button>
+    <button class='button' @click="goEvent(1)">路由跳转path</button>
+    <button class='button' @click="goEvent(2)">路由跳转name</button>
+    <button class='button' @click="goEvent(3)">路由跳转params</button>
+    <button class='button' @click="goEvent(4)">路由跳转query</button>
+    <button class='button' @click="goEvent(5)">路由替换</button>
+    <button class='button' @click="goEvent(6)">路由前进后退</button>
     <img alt="Vue logo" src="@/assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -85,7 +85,7 @@ export default {
     }
     .home {
       @include flexBase();
-      button {
+      .button {
         background-color: pink;
         border-radius: 10px;
         border: none;

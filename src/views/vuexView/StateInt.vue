@@ -18,7 +18,7 @@ export default {
       console.log(this)
     },
     /* state在组件的应用：借助计算属性 */
-    /* 将想要用到的全局state数据，放到组件的computed内部使用，
+    /* 将想要用到的全局state数据，放到组件的computed内部使用,所以上面的age和number就可以简写，
     v-model的内容将其获取（get）和设置（set）分开来即可 */
     computed: {
        age: function() { // 此处不能用箭头函数，computed是对象，否则this是undefined。

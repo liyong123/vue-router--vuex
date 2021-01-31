@@ -1,6 +1,5 @@
 /* axios统一配置封装 */
 import axios from 'axios'
-import qs from 'querystring'
 import router from '../router'
 
 /* 跳转登录页 */
@@ -11,7 +10,7 @@ const toLogin = () => {
 }
 
 /* 异常处理 */
-const errorHandle = (status, other) => {
+const errorHandle = (status) => {
     switch(status) {
         case 400:
             console.log('信息校验失败')
@@ -32,45 +31,64 @@ const errorHandle = (status, other) => {
             break
         /* 还有其他情况 ... */
         default:
-            console.log(other)
+            console.log('other error')
             break
     }
 }
 /* 创建axios实例 */
-const instance = axios.create({ timeout: 3000 })
-instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded' //发送给后端的格式
-/* instance.defaults.headers.common['Authorization'] = localStorage.getItem('token') */
+const service = axios.create({ timeout: 3000 })
+service.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded' //发送给后端的格式
+/* service.defaults.headers.common['Authorization'] = localStorage.getItem('token') */
 
 /* axios请求的拦截，对请求对象转化 */
-instance.interceptors.request.use(config => { //use接收两个函数
-   console.log(config)
-   /* 如果是post请求，则要对请求的data对象进行qs转化 */
-   if (config.method === 'post') {
-       config.data = qs.stringify(config.data)
-   }
-   return config
-}, error => {
-   return Promise.reject(error)
-})
+// service.interceptors.request.use(config => { //use接收两个函数
+//    console.log(config)
+//    /* 如果是post请求，则要对请求的data对象进行qs转化 */
+//    if (config.method === 'post') {
+//        config.data = qs.stringify(config.data)
+//    }
+//    return config
+// }, error => {
+//    return Promise.reject(error)
+// })
 
 /* axios响应的拦截 */
-instance.interceptors.response.use(res => {
+service.interceptors.response.use(response => {
    /* 请求成功 */
-   if(res.status === 200) {
-       return Promise.resolve(res)
+   /* if(response.status === 200) {
+       return Promise.resolve(response)
    } else {
-       return Promise.reject(res)
+       return Promise.reject(response)
+   } */
+   if (response.data.code) {
+      if (response.data.code === 0) {
+          return response
+      } else {
+          /* 提示 */
+      }
+   } else {
+       return response
    }
 }, error => {
    /* 请求失败 */
    const { response } = error
    if (response) {
-      errorHandle(response.status, response.data.message)
-      return Promise.reject(response)
+      errorHandle(response.status)
    } else {
        console.log('net error')
    }
+   return Promise.reject(response)
 })
 
-export default instance
+const request = (params) => {
+    return new Promise((resolve, reject) => {
+        service(params).then(res => {
+            resolve(res.data)
+        }).catch(error => {
+            reject(error)
+        })
+    })
+}
+
+export default request
 

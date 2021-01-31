@@ -85,6 +85,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "apiTest" */ '@/views/ApiTest')
   },
   {
+    path: '/element-ui',
+    name: 'elementui',
+    component: () => import(/* webpackChunkName: "elementui" */ '@/views/componentui/ElementuiDemo')
+  },
+  {
+    path: '/vant',
+    name: 'vant',
+    component: () => import(/* webpackChunkName: "vant" */ '@/views/componentui/VantDemo')
+  },
+  {
     path: '/*',
     name: 'NotMatch',
     component: () => import(/* webpackChunkName: "notMatch" */ '@/views/NotMatch')

@@ -26,12 +26,12 @@ export default {
           this.$store.commit('setNumber', e.target.value)
       }
     },
-    /* 第二种映射方式,对象获取state */
+    /* 第二种映射方式：对象获取state */
     computed: mapState({
         age: state => state.age, // 箭头函数，省略return
         number: 'number',
-        oldAge: function(state) {
-            return state.age + this.old //此处的this,就是代表vue的实例
+        oldAge: function(state) { // 此处必须使用常规函数
+            return state.age + this.old //state中的age和当前的old合成，此处的this,就是代表vue的实例
         }
     })
 }

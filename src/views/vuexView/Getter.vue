@@ -28,6 +28,7 @@ export default {
         },
         /* mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性： */
         /* 如果你想将一个 getter 属性另取一个名字，使用对象形式： */
+        /* 扩展运算符，避免覆盖掉本页面的计算属性 */
         ...mapGetters(['filterList'])
     }
 }
